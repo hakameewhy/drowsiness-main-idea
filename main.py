@@ -21,6 +21,10 @@ TOTAL_YAWN_COUNT = 0
 
 global ALARM_ON
 
+
+# --- inisialisasi User ---
+pengguna = user.User.load()
+
 # --- Inisialisasi Mediapipe ---
 mp_face_mesh = mp.solutions.face_mesh
 face_mesh = mp_face_mesh.FaceMesh(
@@ -148,12 +152,14 @@ while True:
         if TOTAL_EYE_COUNT >= 4 and not ALREADY_ALERTED:
                 print("PLEASE TAKE A BREAK!")
                 #ALREADY_ALERTED = True
+                pengguna.tambahmatakantuk()
                 TOTAL_EYE_COUNT =  0
 
         #Jika total menguap 4 kali, tampilkan pesan 
         if TOTAL_YAWN_COUNT >= 4 and not ALREADY_ALERTED:
                 print("PLEASE TAKE A BREAK!")
                 #ALREADY_ALERTED = True
+                pengguna.tambahmenguap
                 TOTAL_YAWN_COUNT =  0
 
         cv2.putText(flip, f"MAR: {mar:.2f}", (50, 80),
