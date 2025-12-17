@@ -152,14 +152,14 @@ while True:
         if TOTAL_EYE_COUNT >= 4 and not ALREADY_ALERTED:
                 print("PLEASE TAKE A BREAK!")
                 #ALREADY_ALERTED = True
-                pengguna.tambahmatakantuk()
+                pengguna.tambahmatakantuk(TOTAL_EYE_COUNT)
                 TOTAL_EYE_COUNT =  0
 
         #Jika total menguap 4 kali, tampilkan pesan 
         if TOTAL_YAWN_COUNT >= 4 and not ALREADY_ALERTED:
                 print("PLEASE TAKE A BREAK!")
                 #ALREADY_ALERTED = True
-                pengguna.tambahmenguap
+                pengguna.tambahmenguap(TOTAL_YAWN_COUNT)
                 TOTAL_YAWN_COUNT =  0
 
         cv2.putText(flip, f"MAR: {mar:.2f}", (50, 80),
@@ -169,8 +169,9 @@ while True:
     cv2.imshow("Drowsiness & Yawning Detection", flip )
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
+pengguna.save()
 
-print(f'total menguap sebanyak = {pengguna._menguap}')
+print(f'total mengantuk sebanyak = {pengguna._matakantuk}')
 print(f'total menguap sebanyak = {pengguna._menguap}')
 
 # Cleanup
