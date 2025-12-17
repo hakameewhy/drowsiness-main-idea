@@ -4,6 +4,9 @@ import mediapipe as mp
 import time
 import winsound
 import threading  # Untuk suara tanpa blocking
+import datetime
+import os
+import user
 
 # --- Konstanta ---
 EAR_THRESHOLD = 0.15       # Ambang batas mata tertutup
@@ -124,7 +127,7 @@ while True:
             cv2.putText(flip, f"EAR: {ear:.2f}", (50, 50),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
 
-            # --- Deteksi Menguap (Mulut Terbuka) ---
+            #Deteksi Menguap (Mulut Terbuka)
             mar = mouth_aspect_ratio(landmarks, MOUTH_INDICES)
 
             # Gambar titik mulut
@@ -132,7 +135,7 @@ while True:
                 x, y = int(landmarks[i][0]), int(landmarks[i][1])
                 cv2.circle(flip, (x, y), 2, (255, 255, 0), -1)
 
-           # --- Logika deteksi menguap ---
+           #deteksi menguap
         if mar < MAR_THRESHOLD:  # Mulut terbuka lebar
             COUNTER_YAWN += 1
         else:
@@ -141,13 +144,13 @@ while True:
                 print(f"[INFO] Total Yawns: {TOTAL_YAWN_COUNT}")
             COUNTER_YAWN = 0  # Reset setelah mulut menutup lagi
 
-        # --- Jika total mata kantuk 4 kali, tampilkan pesan ---
+        #Jika total mata kantuk 4 kali, tampilkan pesan
         if TOTAL_EYE_COUNT >= 4 and not ALREADY_ALERTED:
                 print("PLEASE TAKE A BREAK!")
                 #ALREADY_ALERTED = True
                 TOTAL_EYE_COUNT =  0
 
-        # --- Jika total menguap 4 kali, tampilkan pesan ---
+        #Jika total menguap 4 kali, tampilkan pesan 
         if TOTAL_YAWN_COUNT >= 4 and not ALREADY_ALERTED:
                 print("PLEASE TAKE A BREAK!")
                 #ALREADY_ALERTED = True
