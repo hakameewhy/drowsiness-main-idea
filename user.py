@@ -4,28 +4,17 @@ class User:
         self.nama = "kosong"
         self.alamat = "kosong"
         self.noSim = "kosong"
-        self._matakantuk = 0
-        self._menguap = 0
+        self._matakantuk = []
+        self._menguap = []
 
     def tambahmatakantuk(self, jumlah):
         jumlah = 4
-        self._matakantuk = jumlah
-        self.simpan()
+        total = self._matakantuk = jumlah
+        self._matakantuk(total)
 
     def tambahmenguap(self,jumlah):
         jumlah = 4 
-        self._menguap = jumlah
-        self.simpan();
+        total = self._menguap + jumlah
+        self._menguap.append(total)
 
-    def simpan(self):
-        with open ('user_data.pkl', 'wb') as f:
-            pickle.dump(self, f)
-
-    @staticmethod
-    def load():
-        try:
-            with open('user_data.pkl', 'rb') as f:
-                return pickle.load()
-        except:
-            return User()
-    
+  

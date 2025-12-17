@@ -170,8 +170,9 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
-    print(f'total menguap sebanyak = {pengguna._menguap}')
-    print(f'total menguap sebanyak = {pengguna._menguap}')
+print(f'total menguap sebanyak = {pengguna._menguap}')
+print(f'total menguap sebanyak = {pengguna._menguap}')
+
 # Cleanup
 cap.release()
 cv2.destroyAllWindows()
